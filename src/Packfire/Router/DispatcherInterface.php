@@ -6,11 +6,9 @@
 
 namespace Packfire\Router;
 
-interface RouterInterface
+interface DispatcherInterface
 {
-    public function add($name, $route, $options = array());
+    public function dispatch($router, $controller, $action);
 
-    public function route($request);
-
-    public function generate($name, $params = array());
+    public function call($instance, $action, $params = array());
 }
