@@ -8,11 +8,9 @@ namespace Packfire\Router;
 
 interface RequestInterface
 {
-    public function __construct($host, $verb, $path);
+    public function pathInfo();
 
-    public function path();
-
-    public function verb();
+    public function method();
 
     public function host();
 }
