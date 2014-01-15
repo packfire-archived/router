@@ -15,7 +15,7 @@ class Router
         $this->routes[$name] = compact($route, $options);
     }
 
-    public function route($request)
+    public function route(RequestInterface $request)
     {
 
     }

@@ -8,7 +8,7 @@ namespace Packfire\Router;
 
 interface MatcherInterface
 {
-    public function __construct($request);
+    public function __construct(RequestInterface $request);
 
     public function match($route);
 }

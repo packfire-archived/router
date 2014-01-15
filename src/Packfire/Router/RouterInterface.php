@@ -10,7 +10,7 @@ interface RouterInterface
 {
     public function add($name, $route, $options = array());
 
-    public function route($request);
+    public function route(RequestInterface $request);
 
     public function generate($name, $params = array());
 }
