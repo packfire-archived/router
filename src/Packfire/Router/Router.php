@@ -6,7 +6,9 @@
 
 namespace Packfire\Router;
 
-class Router implements RouterInterface
+use Packfire\FuelBlade\ConsumerInterface;
+
+class Router implements RouterInterface, ConsumerInterface
 {
     protected $routes = array();
 
@@ -23,5 +25,10 @@ class Router implements RouterInterface
     public function generate($name, $params = array())
     {
 
+    }
+
+    public function __invoke($container)
+    {
+        
     }
 }
