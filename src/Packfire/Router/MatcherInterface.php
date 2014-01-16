@@ -10,5 +10,5 @@ interface MatcherInterface
 {
     public function __construct(RequestInterface $request);
 
-    public function match($route);
+    public function match(RouteInterface $route);
 }
