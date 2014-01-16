@@ -8,7 +8,7 @@ namespace Packfire\Router;
 
 interface RouteInterface
 {
-    public function __construct($name, $config);
+    public function __construct($name, $path, $config);
 
     public function name();
 
