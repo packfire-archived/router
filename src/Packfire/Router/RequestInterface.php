@@ -8,7 +8,7 @@ namespace Packfire\Router;
 
 interface RequestInterface
 {
-    public function pathInfo();
+    public function path();
 
     public function method();
 
