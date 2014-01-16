@@ -10,9 +10,9 @@ class Router
 {
     protected $routes = array();
 
-    public function add($name, $route, $options = array())
+    public function add($name, $path, $config = array())
     {
-        $this->routes[$name] = compact($route, $options);
+        $this->routes[$name] = compact($path, $config);
     }
 
     public function route(RequestInterface $request)
