@@ -51,4 +51,14 @@ class CurrentRequestTest extends PHPUnit_Framework_TestCase
         $this->assertNull($request->host());
         $this->assertNull($request->method());
     }
+
+    public function testHost()
+    {
+        $server = array(
+            'HTTP_HOST' => 'heartcode.sg'
+        );
+        $request = new CurrentRequest($server);
+        $this->assertEquals('heartcode.sg', $request->host());
+        $this->assertNull($request->method());
+    }
 }
