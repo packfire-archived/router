@@ -20,8 +20,12 @@ class CurrentRequest implements RequestInterface
             $server = $_SERVER;
         }
         $this->path = $this->determinePath($server);
-        $this->method = $server['REQUEST_METHOD'];
-        $this->host = $server['HTTP_HOST'];
+        if (isset($server['REQUEST_METHOD'])) {
+            $this->method = $server['REQUEST_METHOD'];
+        }
+        if (isset($server['HTTP_HOST'])) {
+            $this->host = $server['HTTP_HOST'];
+        }
     }
 
     protected function determinePath($server)
