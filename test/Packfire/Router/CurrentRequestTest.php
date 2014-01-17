@@ -31,4 +31,16 @@ class CurrentRequestTest extends PHPUnit_Framework_TestCase
         $this->assertNull($request->host());
         $this->assertNull($request->method());
     }
+
+    public function testPath3()
+    {
+        $server = array(
+            'SCRIPT_NAME' => '/index.php',
+            'PHP_SELF' => '/index.php/test/example/10'
+        );
+        $request = new CurrentRequest($server);
+        $this->assertEquals('/test/example/10', $request->path());
+        $this->assertNull($request->host());
+        $this->assertNull($request->method());
+    }
 }
