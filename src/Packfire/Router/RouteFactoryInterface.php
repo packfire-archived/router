@@ -8,5 +8,5 @@ namespace Packfire\Router;
 
 interface RouteFactoryInterface
 {
-    public function create($name, $path, $config = array());
+    public function create($name, $config = array());
 }
