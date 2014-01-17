@@ -10,12 +10,18 @@ class CurrentRequest implements RequestInterface
 {
     protected $path;
 
+    protected $method;
+
+    protected $host;
+
     public function __construct($server = null)
     {
         if (!$server) {
             $server = $_SERVER;
         }
         $this->path = $this->determinePath($server);
+        $this->method = $server['REQUEST_METHOD'];
+        $this->host = $server['HTTP_HOST'];
     }
 
     protected function determinePath($server)
@@ -44,11 +50,11 @@ class CurrentRequest implements RequestInterface
 
     public function method()
     {
-
+        return $this->method;
     }
 
     public function host()
     {
-
+        return $this->host;
     }
 }
