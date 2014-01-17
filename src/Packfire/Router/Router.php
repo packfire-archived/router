@@ -12,9 +12,9 @@ class Router implements RouterInterface, ConsumerInterface
 {
     protected $routes = array();
 
-    public function add($name, $path, $config = array())
+    public function add($name, $config = array())
     {
-        $this->routes[$name] = compact($path, $config);
+        $this->routes[$name] = $config;
     }
 
     public function route(RequestInterface $request)
