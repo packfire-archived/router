@@ -36,8 +36,8 @@ class CurrentRequest implements RequestInterface
         } elseif (isset($server['PATH_INFO'])) {
             $path = $server['PATH_INFO'];
         } else {
-            $scriptName = $server['SCRIPT_NAME'];
-            $phpSelf = $server['PHP_SELF'];
+            $scriptName = isset($server['SCRIPT_NAME']) ? $server['SCRIPT_NAME'] : '';
+            $phpSelf = isset($server['PHP_SELF']) ? $server['PHP_SELF'] : '';
             if ($scriptName == $phpSelf) {
                 $path = '/';
             } else {
