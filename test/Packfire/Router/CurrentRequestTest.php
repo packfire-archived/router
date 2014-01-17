@@ -43,4 +43,12 @@ class CurrentRequestTest extends PHPUnit_Framework_TestCase
         $this->assertNull($request->host());
         $this->assertNull($request->method());
     }
+
+    public function testEmptyServer()
+    {
+        $request = new CurrentRequest();
+        $this->assertEquals('/', $request->path());
+        $this->assertNull($request->host());
+        $this->assertNull($request->method());
+    }
 }
