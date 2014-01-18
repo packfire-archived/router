@@ -6,10 +6,19 @@
 
 namespace Packfire\Router;
 
-class RouteFactory implements RouteFactoryInterface
+use Packfire\FuelBlade\ConsumerInterface;
+
+class RouteFactory implements RouteFactoryInterface, ConsumerInterface
 {
+    protected $container;
+
     public function create($name, $config = array())
     {
 
+    }
+
+    public function __invoke($container)
+    {
+        $this->container = $container;
     }
 }
