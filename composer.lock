@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "028b9581e009d37607dc06c04b16d87a",
+    "hash": "1c16a84a5e9c6193049d0b9f7bcd8cec",
     "packages": [
         {
             "name": "packfire/fuelblade",
-            "version": "1.1.2",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/packfire/fuelblade.git",
-                "reference": "29d9f3ab73b6df9940875d01213db21ce81ac614"
+                "reference": "cf8c5337871c7d568159d444702d57f12993d9e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/packfire/fuelblade/zipball/29d9f3ab73b6df9940875d01213db21ce81ac614",
-                "reference": "29d9f3ab73b6df9940875d01213db21ce81ac614",
+                "url": "https://api.github.com/repos/packfire/fuelblade/zipball/cf8c5337871c7d568159d444702d57f12993d9e0",
+                "reference": "cf8c5337871c7d568159d444702d57f12993d9e0",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "di",
                 "ioc"
             ],
-            "time": "2013-11-02 15:11:29"
+            "time": "2014-01-18 17:12:19"
         }
     ],
     "packages-dev": [

@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "packfire/fuelblade": "1.1.*"
+        "packfire/fuelblade": "1.2.*"
     },
     "autoload":{
         "psr-0": {"Packfire\\Router\\":"src"}
