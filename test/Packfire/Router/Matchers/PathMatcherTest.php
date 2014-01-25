@@ -17,7 +17,7 @@ class CurrentRequestTest extends PHPUnit_Framework_TestCase
         $request = new CurrentRequest(
             array(
                 'SCRIPT_NAME' => '/index.php',
-                'PHP_SELF' => '/index.php/test/example/10.json.xml'
+                'PHP_SELF' => '/index.php/test/example/10.xml'
             )
         );
 
