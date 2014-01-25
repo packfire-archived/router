@@ -22,22 +22,30 @@ class PathMatcher extends AbstractMatcher
                 $uri = $path['uri'];
                 $params = isset($path['params']) ? $path['params'] : array();
 
-                $regex = self::regexCompiler($uri);
-                $result = (bool)preg_match($regex, $this->request->path());
+                $tokens = self::createTokens($uri);
+                $regex = self::regexCompiler($uri, $tokens);
+                $matches = array();
+                $result = (bool)preg_match($regex, $this->request->path(), $matches);
             }
         }
         return $result;
     }
 
-    public static function regexCompiler($uri)
+    public static function createTokens($uri)
     {
         $matches = array();
         preg_match_all(self::TOKEN_REGEX, $uri, $matches, PREG_SET_ORDER);
-        $regex = $uri;
-        foreach ($matches as $match) {
-            $quantifier = $match[4] == '?' ? '{0,1}' : '';
-            $regex = str_replace($match[0], '(?<' . $match[3] . '>' . preg_quote($match[2], '`') . '(.+))' . $quantifier, $regex);
+        return $matches;
+    }
+
+    public static function regexCompiler($uri, $tokens)
+    {
+        $changes = array();
+        foreach ($tokens as $token) {
+            $quantifier = $token[4] == '?' ? '{0,1}' : '';
+            $changes[$token[0]] = '(?<' . $token[3] . '>' . preg_quote($token[2], '`') . '(.+))' . $quantifier;
         }
+        $regex = str_replace(array_keys($changes), $changes, $uri);
         return '`^' . $regex . '$`';
     }
 }
