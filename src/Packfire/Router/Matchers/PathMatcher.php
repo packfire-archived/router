@@ -31,6 +31,46 @@ class PathMatcher extends AbstractMatcher
         return $result;
     }
 
+    public static function validate($params, $name, $rule)
+    {
+        $result = true;
+        if (isset($params[$name])) {
+            switch ($rule) {
+                case 'i':
+                case 'int':
+                case 'integer':
+                case 'number':
+                case 'numbers':
+                    $rule = '^[0-9]+$';
+                    break;
+                case 'a':
+                case 'alpha':
+                case 'alphabet':
+                case 'alphabets':
+                    $rule = '^[a-zA-Z]+$';
+                    break;
+                case 'an':
+                case 'alnum':
+                case 'alphanumeric':
+                    $rule = '^[a-zA-Z0-9]+$';
+                    break;
+                case 'slug':
+                    $rule = '^[a-zA-Z0-9-]+$';
+                    break;
+                case 'hex':
+                    $rule = '^[a-fA-F0-9]+$';
+                    break;
+                default:
+                    if (substr($rule, 0, 1) != '^' && substr($rule, -1) != '$') {
+                        $rule = '^' . $rule . '$';
+                    }
+                    break;
+            }
+            $result = (bool)preg_match('`' . $rule . '`', $params[$name]);
+        }
+        return $result;
+    }
+
     public static function createTokens($uri)
     {
         $matches = array();
