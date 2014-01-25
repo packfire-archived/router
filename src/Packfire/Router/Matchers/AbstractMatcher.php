@@ -7,6 +7,7 @@
 namespace Packfire\Router\Matchers;
 
 use Packfire\Router\MatcherInterface;
+use Packfire\Router\RequestInterface;
 
 abstract class AbstractMatcher implements MatcherInterface
 {
