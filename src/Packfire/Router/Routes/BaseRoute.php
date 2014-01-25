@@ -6,9 +6,16 @@
 
 namespace Packfire\Router\Routes;
 
-class BaseRoute extends AbstractRoute
+use Packfire\FuelBlade\ConsumerInterface;
+
+class BaseRoute extends AbstractRoute implements ConsumerInterface
 {
     public function callback()
+    {
+        
+    }
+
+    public function __invoke($container)
     {
         
     }
