@@ -20,12 +20,12 @@ class PathMatcher extends AbstractMatcher
             $path = $rules['path'];
             if (isset($path['uri'])) {
                 $uri = $path['uri'];
-                $params = isset($path['params']) ? $path['params'] : array();
+                $paramRules = isset($path['params']) ? $path['params'] : array();
 
                 $tokens = self::createTokens($uri);
                 $regex = self::regexCompiler($uri, $tokens);
-                $matches = array();
-                $result = (bool)preg_match($regex, $this->request->path(), $matches);
+                $uriParams = array();
+                $result = (bool)preg_match($regex, $this->request->path(), $uriParams);
             }
         }
         return $result;
