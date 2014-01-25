@@ -42,10 +42,9 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
     {
         $dispatcher = new Dispatcher();
         $result = $dispatcher->dispatch(
-            array($this, 'func'),
+            array($this, 'func2'),
             array(
-                'b' => 3,
-                'a' => 2
+                'a' => 3
             )
         );
         $this->assertEquals(5, $result);
@@ -56,7 +55,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
         return $a + $b;
     }
 
-    public function func2($a, $b)
+    public function func2($a, $b = 2)
     {
         return $a + $b;
     }
