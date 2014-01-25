@@ -12,6 +12,8 @@ class PathMatcher extends AbstractMatcher
 {
     const TOKEN_REGEX = '`(\((.+)){0,1}:([\w\d_]+)(\?{0,1})\){0,1}`';
 
+    protected $params = array();
+
     public function match(RouteInterface $route)
     {
         $result = false;
@@ -37,10 +39,16 @@ class PathMatcher extends AbstractMatcher
                             break;
                         }
                     }
+                    $this->params = $params;
                 }
             }
         }
         return $result;
+    }
+
+    public function params()
+    {
+        return $this->params;
     }
 
     public static function validate($params, $name, $rule)
