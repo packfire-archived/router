@@ -28,6 +28,9 @@ class CurrentRequestTest extends PHPUnit_Framework_TestCase
             array(
                 'path' => array(
                     'uri' => '/test/example/:id(.:format?)'
+                ),
+                'params' => array(
+                    'id' => 'i'
                 )
             ),
             array()
