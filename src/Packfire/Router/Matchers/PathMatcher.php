@@ -83,9 +83,8 @@ class PathMatcher extends AbstractMatcher
         $changes = array();
         foreach ($tokens as $token) {
             $quantifier = $token[4] == '?' ? '{0,1}' : '';
-            $changes[$token[0]] = '(?<' . $token[3] . '>' . preg_quote($token[2], '`') . '(.+))' . $quantifier;
+            $changes[$token[0]] = preg_quote($token[2], '`') . '(?<' . $token[3] . '>' . '(.+))' . $quantifier;
         }
-        $regex = str_replace(array_keys($changes), $changes, $uri);
-        return '`^' . $regex . '$`';
+        return '`^' . str_replace(array_keys($changes), $changes, $uri) . '$`';
     }
 }
