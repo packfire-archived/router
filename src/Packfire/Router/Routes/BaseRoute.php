@@ -6,33 +6,8 @@
 
 namespace Packfire\Router\Routes;
 
-use Packfire\Router\RouteInterface;
-
-class BaseRoute implements RouteInterface
+class BaseRoute extends AbstractRoute
 {
-    protected $name;
-
-    protected $rules;
-
-    protected $config;
-
-    public function __construct($name, $rules, $config)
-    {
-        $this->name = $name;
-        $this->rules = $rules;
-        $this->config = $config;
-    }
-
-    public function name()
-    {
-        return $this->name;
-    }
-
-    public function rules()
-    {
-        return $this->rules;
-    }
-
     public function callback()
     {
         
