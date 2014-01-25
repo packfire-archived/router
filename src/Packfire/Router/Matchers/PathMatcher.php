@@ -26,6 +26,18 @@ class PathMatcher extends AbstractMatcher
                 $regex = self::regexCompiler($uri, $tokens);
                 $uriParams = array();
                 $result = (bool)preg_match($regex, $this->request->path(), $uriParams);
+
+                $params = array();
+                if ($result) {
+                    foreach ($paramRules as $name => $rule) {
+                        $result = self::validate($uriParams, $name, $rule);
+                        if ($result) {
+                            $params[$name] = isset($uriParams[$name]) ? $uriParams[$name] : null;
+                        } else {
+                            break;
+                        }
+                    }
+                }
             }
         }
         return $result;
