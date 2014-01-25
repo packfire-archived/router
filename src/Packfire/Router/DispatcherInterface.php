@@ -8,7 +8,5 @@ namespace Packfire\Router;
 
 interface DispatcherInterface
 {
-    public function dispatch($router, $controller, $action);
-
     public function call($instance, $action, $params = array());
 }
