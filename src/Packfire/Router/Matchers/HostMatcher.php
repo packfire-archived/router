@@ -4,7 +4,7 @@
  * See file LICENSE or go to http://opensource.org/licenses/BSD-3-Clause for full license details.
  */
 
-namespace Packfire\Router;
+namespace Packfire\Router\Matchers;
 
 use Packfire\Router\RouteInterface;
 
