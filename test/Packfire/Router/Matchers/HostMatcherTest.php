@@ -7,9 +7,32 @@
 namespace Packfire\Router\Matchers;
 
 use \PHPUnit_Framework_TestCase;
+use Packfire\Router\CurrentRequest;
+use Packfire\Router\Routes\BaseRoute;
 
 class HostMatcherTest extends PHPUnit_Framework_TestCase
 {
+    public function testMatch()
+    {
+        $request = new CurrentRequest(
+            array(
+                'HTTP_HOST' => 'blog.heartcode.sg'
+            )
+        );
+
+        $matcher = new HostMatcher($request);
+
+        $route = new BaseRoute(
+            'test',
+            array(
+                'host' => '*.heartcode.sg'
+            ),
+            array()
+        );
+
+        $this->assertTrue($matcher->match($route));
+    }
+
     public function testRegexCompiler()
     {
         $this->assertEquals('`[a-z0-9]+\.heartcode\.sg`i', HostMatcher::regexCompiler('*.heartcode.sg'));
