@@ -28,6 +28,6 @@ class HostMatcher extends AbstractMatcher
 
     public static function regexCompiler($host)
     {
-        return '`' . str_replace(array('\*', '\?'), array('[a-z0-9]+', '.+'), preg_quote($host, '`')) . '`i';
+        return '`^' . str_replace(array('\*', '\?'), array('[a-z0-9]+', '.+'), preg_quote($host, '`')) . '$`i';
     }
 }
