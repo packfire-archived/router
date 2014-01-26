@@ -33,8 +33,29 @@ class HostMatcherTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($matcher->match($route));
     }
 
+    public function testMatch2()
+    {
+        $request = new CurrentRequest(
+            array(
+                'HTTP_HOST' => 'blog.it.heartcode.sg'
+            )
+        );
+
+        $matcher = new HostMatcher($request);
+
+        $route = new BaseRoute(
+            'test',
+            array(
+                'host' => '*.heartcode.sg'
+            ),
+            array()
+        );
+
+        $this->assertFalse($matcher->match($route));
+    }
+
     public function testRegexCompiler()
     {
-        $this->assertEquals('`[a-z0-9]+\.heartcode\.sg`i', HostMatcher::regexCompiler('*.heartcode.sg'));
+        $this->assertEquals('`^[a-z0-9]+\.heartcode\.sg$`i', HostMatcher::regexCompiler('*.heartcode.sg'));
     }
 }
