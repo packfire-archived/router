@@ -12,7 +12,18 @@ class HostMatcher extends AbstractMatcher
 {
     public function match(RouteInterface $route)
     {
-        
+        $result = false;
+        $rules = $route->rules();
+        if (isset($rules['host'])) {
+            $hosts = (array)$rules['host'];
+            foreach ($hosts as $host) {
+                $result = (bool)preg_match(self::regexCompiler($host), $this->request->host());
+                if ($result) {
+                    break;
+                }
+            }
+        }
+        return $result;
     }
 
     public static function regexCompiler($host)
