@@ -10,7 +10,7 @@ use \PHPUnit_Framework_TestCase;
 use Packfire\Router\CurrentRequest;
 use Packfire\Router\Routes\BaseRoute;
 
-class CurrentRequestTest extends PHPUnit_Framework_TestCase
+class PatchMatcherTest extends PHPUnit_Framework_TestCase
 {
     public function testMatch()
     {
