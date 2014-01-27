@@ -38,4 +38,31 @@ class PatchMatcherTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($matcher->match($route));
     }
+
+    public function testMatchFailParam()
+    {
+        $request = new CurrentRequest(
+            array(
+                'SCRIPT_NAME' => '/index.php',
+                'PHP_SELF' => '/index.php/test/example/woah.xml'
+            )
+        );
+
+        $matcher = new PathMatcher($request);
+
+        $route = new BaseRoute(
+            'test',
+            array(
+                'path' => array(
+                    'uri' => '/test/example/:id(.:format?)',
+                    'params' => array(
+                        'id' => 'i'
+                    )
+                )
+            ),
+            array()
+        );
+
+        $this->assertFalse($matcher->match($route));
+    }
 }
