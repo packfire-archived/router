@@ -37,6 +37,7 @@ class PatchMatcherTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($matcher->match($route));
+        $this->assertEquals(array('id' => 10), $matcher->params());
     }
 
     public function testMatchFailParam()
