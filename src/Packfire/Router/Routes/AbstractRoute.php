@@ -12,15 +12,23 @@ abstract class AbstractRoute implements RouteInterface
 {
     protected $name;
 
-    protected $rules;
+    protected $rules = array();
 
     protected $config;
 
-    public function __construct($name, $rules, $config)
+    public function __construct($name, $config)
     {
         $this->name = $name;
-        $this->rules = $rules;
         $this->config = $config;
+
+        $this->rules['host'] = isset($config['host']) ? $config['host'] : array();
+        $this->rules['method'] = isset($config['method']) ? $config['method'] : array();
+        if (isset($config['path'])) {
+            $this->rules['path'] = array(
+                'uri' => $config['path'],
+                'params' => isset($config['params']) ? $config['params'] : array()
+            );
+        }
     }
 
     public function name()
