@@ -26,8 +26,7 @@ class MethodMatcherTest extends PHPUnit_Framework_TestCase
             'test',
             array(
                 'method' => array('get', 'post')
-            ),
-            array()
+            )
         );
 
         $this->assertTrue($matcher->match($route));
@@ -47,8 +46,7 @@ class MethodMatcherTest extends PHPUnit_Framework_TestCase
             'test',
             array(
                 'method' => 'get'
-            ),
-            array()
+            )
         );
 
         $this->assertFalse($matcher->match($route));

@@ -24,8 +24,6 @@ class HostMatcherTest extends PHPUnit_Framework_TestCase
 
         $route = new BaseRoute(
             'test',
-            array(
-            ),
             array()
         );
 
@@ -46,8 +44,7 @@ class HostMatcherTest extends PHPUnit_Framework_TestCase
             'test',
             array(
                 'host' => '*.heartcode.sg'
-            ),
-            array()
+            )
         );
 
         $this->assertTrue($matcher->match($route));
@@ -67,8 +64,7 @@ class HostMatcherTest extends PHPUnit_Framework_TestCase
             'test',
             array(
                 'host' => '*.heartcode.sg'
-            ),
-            array()
+            )
         );
 
         $this->assertFalse($matcher->match($route));

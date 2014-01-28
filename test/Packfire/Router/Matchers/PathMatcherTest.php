@@ -26,14 +26,11 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
         $route = new BaseRoute(
             'test',
             array(
-                'path' => array(
-                    'uri' => '/test/example/:id(.:format?)',
-                    'params' => array(
-                        'id' => 'i'
-                    )
+                'path' => '/test/example/:id(.:format?)',
+                'params' => array(
+                    'id' => 'i'
                 )
-            ),
-            array()
+            )
         );
 
         $this->assertTrue($matcher->match($route));
@@ -54,14 +51,11 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
         $route = new BaseRoute(
             'test',
             array(
-                'path' => array(
-                    'uri' => '/test/example/:id(.:format?)',
-                    'params' => array(
-                        'id' => 'i'
-                    )
+                'path' => '/test/example/:id(.:format?)',
+                'params' => array(
+                    'id' => 'i'
                 )
-            ),
-            array()
+            )
         );
 
         $this->assertFalse($matcher->match($route));
