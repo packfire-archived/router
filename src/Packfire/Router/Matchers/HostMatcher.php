@@ -12,7 +12,7 @@ class HostMatcher extends AbstractMatcher
 {
     public function match(RouteInterface $route)
     {
-        $result = false;
+        $result = true;
         $rules = $route->rules();
         if (isset($rules['host'])) {
             $hosts = (array)$rules['host'];
