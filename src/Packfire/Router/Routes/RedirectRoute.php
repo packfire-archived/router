@@ -28,6 +28,11 @@ class RedirectRoute extends AbstractRoute implements ConsumerInterface
         if (isset($config['target'])) {
             $result = true;
         }
-        return true;
+        return $result;
+    }
+
+    public function __invoke($container)
+    {
+        $this->container = $container;
     }
 }
