@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "packfire/fuelblade",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/packfire/fuelblade.git",
-                "reference": "cf8c5337871c7d568159d444702d57f12993d9e0"
+                "reference": "6d62d9c42837a671c4a215d8710019c15df0f95b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/packfire/fuelblade/zipball/cf8c5337871c7d568159d444702d57f12993d9e0",
-                "reference": "cf8c5337871c7d568159d444702d57f12993d9e0",
+                "url": "https://api.github.com/repos/packfire/fuelblade/zipball/6d62d9c42837a671c4a215d8710019c15df0f95b",
+                "reference": "6d62d9c42837a671c4a215d8710019c15df0f95b",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "di",
                 "ioc"
             ],
-            "time": "2014-01-18 17:12:19"
+            "time": "2014-01-29 01:38:33"
         }
     ],
     "packages-dev": [
