@@ -24,4 +24,16 @@ class RouteFactoryTest extends PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Packfire\\Router\\Routes\\RedirectRoute', $obj);
     }
+
+    public function testCreateFail()
+    {
+        $config = array(
+        );
+
+        $container = new Container();
+        $factory = $container->instantiate('Packfire\\Router\\RouteFactory');
+        $obj = $factory->create('test', $config);
+
+        $this->assertNull($obj);
+    }
 }
