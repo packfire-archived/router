@@ -7,14 +7,25 @@
 namespace Packfire\Router;
 
 use Packfire\FuelBlade\ConsumerInterface;
+use Packfire\FuelBlade\Container;
 
 class Router implements RouterInterface, ConsumerInterface
 {
     protected $routes = array();
 
+    protected $container;
+
+    protected $factory;
+
+    public function __construct()
+    {
+        $this->container = new Container();
+        $this->factory = $this->container->instantiate('Packfire\\Router\\RouteFactory');
+    }
+
     public function add($name, $config = array())
     {
-        $this->routes[$name] = $config;
+        $this->routes[$name] = $this->factory->create($name, $config);
     }
 
     public function route(RequestInterface $request)
@@ -29,6 +40,11 @@ class Router implements RouterInterface, ConsumerInterface
 
     public function __invoke($container)
     {
-        
+        $this->container = $container;
+        if (isset($container['Packfire\\Router\\RouteFactoryInterface'])) {
+            $this->factory = $container['Packfire\\Router\\RouteFactoryInterface'];
+        } else {
+            call_user_func($this->factory, $this->container);
+        }
     }
 }
