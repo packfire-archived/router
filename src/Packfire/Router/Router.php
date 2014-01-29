@@ -30,7 +30,34 @@ class Router implements RouterInterface, ConsumerInterface
 
     public function route(RequestInterface $request)
     {
+        $matchers = array();
+        if (isset($this->container['Packfire\\Router\\MatcherInterface'])) {
+            $matchers = $this->container['Packfire\\Router\\MatcherInterface'];
+        } else {
+            $matchers = array(
+                'Packfire\\Router\\Matchers\\HostMatcher',
+                'Packfire\\Router\\Matchers\\MethodMatcher',
+                'Packfire\\Router\\Matchers\\PathMatcher'
+            );
+        }
 
+        foreach ($matchers as &$matcher) {
+            $matcher = new $matcher($request);
+        }
+
+        foreach ($this->routes as $route) {
+            $result = true;
+            foreach ($matchers as $matcher) {
+                $result = $matcher->match($route);
+                if (!$result) {
+                    break;
+                }
+            }
+            if ($result) {
+                return $route;
+            }
+        }
+        return null;
     }
 
     public function generate($name, $params = array())
