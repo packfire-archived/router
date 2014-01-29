@@ -31,6 +31,15 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
         }
     }
 
+    public static function testConfig($config)
+    {
+        $result = false;
+        if (isset($config['path']) && isset($config['action'])) {
+            $result = true;
+        }
+        return true;
+    }
+
     public static function loadCallback($action)
     {
         if (is_string($action)) {

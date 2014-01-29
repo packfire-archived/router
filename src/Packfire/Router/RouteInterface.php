@@ -10,6 +10,8 @@ interface RouteInterface
 {
     public function __construct($name, $config);
 
+    public static function testConfig($config);
+
     public function name();
 
     public function rules();

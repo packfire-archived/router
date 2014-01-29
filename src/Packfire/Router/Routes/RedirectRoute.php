@@ -21,4 +21,13 @@ class RedirectRoute extends AbstractRoute implements ConsumerInterface
         header('Location: ' . $target, true, $code);
         exit;
     }
+
+    public static function testConfig($config)
+    {
+        $result = false;
+        if (isset($config['target'])) {
+            $result = true;
+        }
+        return true;
+    }
 }
