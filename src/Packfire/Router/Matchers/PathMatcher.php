@@ -16,7 +16,7 @@ class PathMatcher extends AbstractMatcher
 
     public function match(RouteInterface $route)
     {
-        $result = false;
+        $result = true;
         $rules = $route->rules();
         if (isset($rules['path'])) {
             $path = $rules['path'];
