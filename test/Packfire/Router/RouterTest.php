@@ -31,4 +31,18 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Packfire\\Router\\RouteInterface', $route);
         $this->assertEquals('test', $route->name());
     }
+
+    public function testGenerate()
+    {
+        $config = array(
+            'path' => '/blog/:id',
+            'target' => 'http://heartcode.sg/'
+        );
+
+        $router = new Router();
+        $router->add('test', $config);
+
+        $uri = $router->generate('test', array('id' => 5));
+        $this->assertEquals('/blog/5', $uri);
+    }
 }
