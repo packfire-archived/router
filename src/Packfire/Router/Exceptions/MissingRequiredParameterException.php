@@ -6,10 +6,10 @@
 
 namespace Packfire\Router\Exceptions;
 
-class RouteNotFoundException extends \Exception
+class MissingRequiredParameterException extends \Exception
 {
     public function __construct($route, $parameter)
     {
-        parent::__construct('The parameter "' . $parameter . '" of route "' . $name . '" is required, but not given.');
+        parent::__construct('The parameter "' . $parameter . '" of route "' . $route . '" is required, but not given.');
     }
 }

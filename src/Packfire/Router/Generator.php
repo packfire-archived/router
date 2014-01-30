@@ -7,6 +7,7 @@
 namespace Packfire\Router;
 
 use Packfire\Router\Matchers\PathMatcher;
+use Packfire\Router\Exceptions\MissingRequiredParameterException;
 
 class Generator implements GeneratorInterface
 {
@@ -27,6 +28,8 @@ class Generator implements GeneratorInterface
                             $replacements[$token[0]] = $token[2] . $params[$name];
                         } elseif ($token[4] == '?') {
                             $replacements[$token[0]] = '';
+                        } else {
+                            throw new MissingRequiredParameterException($route->name(), $name);
                         }
                     }
                     $uri = str_replace(array_keys($replacements), $replacements, $uri);
