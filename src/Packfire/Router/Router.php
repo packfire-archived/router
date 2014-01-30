@@ -33,7 +33,7 @@ class Router implements RouterInterface, ConsumerInterface
     {
         $matchers = array();
         if (isset($this->container['Packfire\\Router\\MatcherInterface'])) {
-            $matchers = $this->container['Packfire\\Router\\MatcherInterface'];
+            $matchers = (array)$this->container['Packfire\\Router\\MatcherInterface'];
         } else {
             $matchers = array(
                 'Packfire\\Router\\Matchers\\HostMatcher',

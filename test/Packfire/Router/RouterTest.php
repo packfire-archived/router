@@ -7,6 +7,7 @@
 namespace Packfire\Router;
 
 use \PHPUnit_Framework_TestCase;
+use Packfire\FuelBlade\Container;
 
 class RouterTest extends PHPUnit_Framework_TestCase
 {
@@ -60,7 +61,40 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('blog', $route->name());
     }
 
+    public function testRouteCustomMatcher()
+    {
+        $container = new Container();
 
+        $container['Packfire\\Router\\MatcherInterface'] = 'Packfire\\Router\\Matchers\\MethodMatcher';
+
+        $router = $container->instantiate('Packfire\\Router\\Router');
+
+        $config = array(
+            'path' => '/test',
+            'method' => 'POST',
+            'target' => 'http://heartcode.sg/'
+        );
+        $router->add('test', $config);
+
+        $config = array(
+            'path' => '/test',
+            'method' => array('get', 'post'),
+            'target' => 'http://heartcode.sg/'
+        );
+        $router->add('test2', $config);
+
+        $request = new CurrentRequest(
+            array(
+                'SCRIPT_NAME' => '/index.php',
+                'PHP_SELF' => '/index.php/test',
+                'REQUEST_METHOD' => 'get'
+            )
+        );
+
+        $route = $router->route($request);
+        $this->assertInstanceOf('Packfire\\Router\\RouteInterface', $route);
+        $this->assertEquals('test2', $route->name());
+    }
     public function testGenerate()
     {
         $config = array(
