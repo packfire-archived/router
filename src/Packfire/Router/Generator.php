@@ -17,8 +17,6 @@ class Generator implements GeneratorInterface
             $path = $rules['path'];
             if (isset($path['uri'])) {
                 $uri = $path['uri'];
-                $paramRules = isset($path['params']) ? $path['params'] : array();
-
                 $tokens = PathMatcher::createTokens($uri);
 
                 if ($tokens) {
@@ -26,7 +24,9 @@ class Generator implements GeneratorInterface
                     foreach ($tokens as $token) {
                         $name = $token[3];
                         if (isset($params[$name])) {
-                            $replacements[$token[1]] = $params[$name];
+                            $replacements[$token[0]] = $params[$name];
+                        } elseif ($token[4] == '?') {
+                            $replacements[$token[0]] = '';
                         }
                     }
                     $uri = str_replace(array_keys($replacements), $replacements, $uri);
