@@ -8,6 +8,7 @@ namespace Packfire\Router;
 
 use Packfire\FuelBlade\ConsumerInterface;
 use Packfire\FuelBlade\Container;
+use Packfire\Router\Exceptions\RouteNotFoundException;
 
 class Router implements RouterInterface, ConsumerInterface
 {
@@ -69,6 +70,8 @@ class Router implements RouterInterface, ConsumerInterface
                 $generator = new Generator();
             }
             return $generator->generate($this->routes[$name], $params);
+        } else {
+            throw new RouteNotFoundException($name);
         }
     }
 
