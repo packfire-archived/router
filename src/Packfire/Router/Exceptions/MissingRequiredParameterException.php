@@ -8,8 +8,8 @@ namespace Packfire\Router\Exceptions;
 
 class RouteNotFoundException extends \Exception
 {
-    public function __construct($name)
+    public function __construct($route, $parameter)
     {
-        parent::__construct('The route "' . $name . '" requested could not be found in the router.');
+        parent::__construct('The parameter "' . $parameter . '" of route "' . $name . '" is required, but not given.');
     }
 }
