@@ -10,7 +10,7 @@ use \PHPUnit_Framework_TestCase;
 
 class RouterTest extends PHPUnit_Framework_TestCase
 {
-    public function testCreate()
+    public function testRoute()
     {
         $config = array(
             'path' => '/test',
@@ -32,7 +32,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('test', $route->name());
     }
 
-    public function testCreateMatchMany()
+    public function testRouteMatchMany()
     {
         $router = new Router();
 
