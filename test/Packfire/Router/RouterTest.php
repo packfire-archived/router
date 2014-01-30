@@ -61,6 +61,34 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('blog', $route->name());
     }
 
+    public function testRouteMatchNone()
+    {
+        $router = new Router();
+
+        $config = array(
+            'path' => '/test',
+            'target' => 'http://heartcode.sg/'
+        );
+        $router->add('test', $config);
+
+        $config = array(
+            'path' => '/blog-:id',
+            'params' => array('id' => 'i'),
+            'target' => 'http://heartcode.sg/'
+        );
+        $router->add('blog', $config);
+
+        $request = new CurrentRequest(
+            array(
+                'SCRIPT_NAME' => '/index.php',
+                'PHP_SELF' => '/index.php/blog-tw'
+            )
+        );
+
+        $route = $router->route($request);
+        $this->assertNull($route);
+    }
+
     public function testRouteCustomMatcher()
     {
         $container = new Container();
