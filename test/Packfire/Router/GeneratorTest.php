@@ -28,4 +28,22 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
         $uri = $generator->generate($route, array('id' => 4));
         $this->assertEquals('/test/example/4', $uri);
     }
+
+    public function testGenerate2()
+    {
+        $route = new BaseRoute(
+            'test',
+            array(
+                'path' => '/test/example/:id(.:format?)',
+                'params' => array(
+                    'id' => 'i'
+                )
+            )
+        );
+
+        $generator = new Generator();
+
+        $uri = $generator->generate($route, array('id' => 4, 'format' => 'json'));
+        $this->assertEquals('/test/example/4.json', $uri);
+    }
 }
