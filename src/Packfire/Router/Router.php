@@ -42,8 +42,8 @@ class Router implements RouterInterface, ConsumerInterface
             );
         }
 
-        foreach ($matchers as &$matcher) {
-            $matcher = new $matcher($request);
+        foreach ($matchers as $i => $matcher) {
+            $matchers[$i] = new $matcher($request);
         }
 
         foreach ($this->routes as $route) {
