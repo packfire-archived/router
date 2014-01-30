@@ -62,7 +62,14 @@ class Router implements RouterInterface, ConsumerInterface
 
     public function generate($name, $params = array())
     {
-
+        if (isset($this->routes[$name])) {
+            if (isset($this->container['Packfire\\Router\\GeneratorInterface'])) {
+                $generator = $this->container['Packfire\\Router\\GeneratorInterface'];
+            } else {
+                $generator = new Generator();
+            }
+            return $generator->generate($this->routes[$name], $params);
+        }
     }
 
     public function __invoke($container)
