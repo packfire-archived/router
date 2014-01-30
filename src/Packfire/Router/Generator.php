@@ -24,7 +24,7 @@ class Generator implements GeneratorInterface
                     foreach ($tokens as $token) {
                         $name = $token[3];
                         if (isset($params[$name])) {
-                            $replacements[$token[0]] = $params[$name];
+                            $replacements[$token[0]] = $token[2] . $params[$name];
                         } elseif ($token[4] == '?') {
                             $replacements[$token[0]] = '';
                         }
