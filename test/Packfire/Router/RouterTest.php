@@ -45,4 +45,18 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $uri = $router->generate('test', array('id' => 5));
         $this->assertEquals('/blog/5', $uri);
     }
+
+    /**
+     * @exceptedException Packfire\Router\Exceptions\RouteNotFoundException
+     */
+    public function testGenerateException()
+    {
+        $config = array(
+            'path' => '/blog/:id',
+            'target' => 'http://heartcode.sg/'
+        );
+
+        $router = new Router();
+        $router->add('one', $config);
+    }
 }
