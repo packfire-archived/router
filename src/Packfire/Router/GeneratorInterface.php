@@ -8,5 +8,5 @@ namespace Packfire\Router;
 
 interface GeneratorInterface
 {
-    public function generate($route, $params);
+    public function generate(RouteInterface $route, $params);
 }
