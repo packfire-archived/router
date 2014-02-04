@@ -92,6 +92,11 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(PathMatcher::validate(array('v' => 'A0GF2BC'), 'v', 'h'));
         $this->assertFalse(PathMatcher::validate(array('v' => 'ce41RW3f'), 'v', 'hex'));
 
+        $this->assertTrue(PathMatcher::validate(array('v' => 'test@heartcode.sg'), 'v', 'e'));
+        $this->assertTrue(PathMatcher::validate(array('v' => 'maybe.95@hotmail.com'), 'v', 'email'));
+        $this->assertFalse(PathMatcher::validate(array('v' => 'woah@example,com'), 'v', 'e'));
+        $this->assertFalse(PathMatcher::validate(array('v' => 'runner!'), 'v', 'email'));
+
         $this->assertTrue(PathMatcher::validate(array('v' => 'words 123?'), 'v', 'any'));
         $this->assertTrue(PathMatcher::validate(array('v' => 'test maybe, 123?'), 'v', 'text'));
 

@@ -82,6 +82,10 @@ class PathMatcher extends AbstractMatcher
                 case 'hex':
                     $rule = '^[a-fA-F0-9]+$';
                     break;
+                case 'e':
+                case 'email':
+                    $rule = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$';
+                    break;
                 case 'any':
                 case 'string':
                 case 'text':
