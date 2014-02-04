@@ -7,6 +7,7 @@
 namespace Packfire\Router\Routes;
 
 use \PHPUnit_Framework_TestCase;
+use Packfire\FuelBlade\Container;
 
 class PathMatcherTest extends PHPUnit_Framework_TestCase
 {
@@ -15,5 +16,14 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(BaseRoute::testConfig(array('path' => '/test', 'action' => 'TestController::imagine')));
         $this->assertFalse(BaseRoute::testConfig(array('path' => '/test')));
         $this->assertFalse(BaseRoute::testConfig(array('action' => 'TestController::imagine')));
+    }
+
+    public function testLoadCallback()
+    {
+        $container = $this->getMock('Packfire\\FuelBlade\\ContainerInterface');
+        $container->expects($this->once())
+            ->method('instantiate')
+            ->will($this->returnValue($this));
+        $this->assertEquals(array($this, 'testLoadCallback'), BaseRoute::loadCallback($container, 'TestController::testLoadCallback'));
     }
 }
