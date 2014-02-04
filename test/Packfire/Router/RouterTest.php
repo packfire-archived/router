@@ -123,6 +123,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Packfire\\Router\\RouteInterface', $route);
         $this->assertEquals('test2', $route->name());
     }
+
     public function testGenerate()
     {
         $config = array(
@@ -138,7 +139,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @exceptedException Packfire\Router\Exceptions\RouteNotFoundException
+     * @expectedException Packfire\Router\Exceptions\RouteNotFoundException
      */
     public function testGenerateException()
     {
@@ -149,5 +150,6 @@ class RouterTest extends PHPUnit_Framework_TestCase
 
         $router = new Router();
         $router->add('one', $config);
+        $uri = $router->generate('two');
     }
 }
