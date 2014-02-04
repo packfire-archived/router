@@ -26,4 +26,13 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue($this));
         $this->assertEquals(array($this, 'testLoadCallback'), BaseRoute::loadCallback($container, 'TestController::testLoadCallback'));
     }
+
+    public function testLoadCallback2()
+    {
+        $container = $this->getMock('Packfire\\FuelBlade\\ContainerInterface');
+        $container->expects($this->never())
+            ->method('instantiate')
+            ->will($this->returnValue($this));
+        $this->assertEquals($this, BaseRoute::loadCallback($container, $this));
+    }
 }
