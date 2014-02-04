@@ -124,6 +124,26 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('test2', $route->name());
     }
 
+    public function testCustomFactory()
+    {
+        $route = $this->getMock('Packfire\\Router\\RouteInterface');
+
+        $factory = $this->getMock('Packfire\\Router\\RouteFactoryInterface');
+        $factory->expects($this->once())
+            ->method('create')
+            ->will($this->returnValue($route));
+
+        $container = new Container();
+        $container['Packfire\\Router\\RouteFactoryInterface'] = $factory;
+
+        $router = $container->instantiate('Packfire\\Router\\Router');
+
+        $router->add('test');
+
+        $testRoute = $router->route($this->getMock('Packfire\\Router\\RequestInterface'));
+        $this->assertEquals($route, $testRoute);
+    }
+
     public function testGenerate()
     {
         $config = array(
@@ -148,12 +168,12 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $container = new Container();
         $container['Packfire\\Router\\GeneratorInterface'] = $generator;
 
+        $router = $container->instantiate('Packfire\\Router\\Router');
+
         $config = array(
             'path' => '/blog/:id',
             'target' => 'http://heartcode.sg/'
         );
-
-        $router = $container->instantiate('Packfire\\Router\\Router');
         $router->add('test', $config);
 
         $uri = $router->generate('test', array('id' => 5));

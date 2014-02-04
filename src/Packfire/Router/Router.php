@@ -83,5 +83,6 @@ class Router implements RouterInterface, ConsumerInterface
         } else {
             call_user_func($this->factory, $this->container);
         }
+        return $this;
     }
 }
