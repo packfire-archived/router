@@ -138,6 +138,28 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/blog/5', $uri);
     }
 
+    public function testGenerateCustomGenerator()
+    {
+        $generator = $this->getMock('Packfire\\Router\\GeneratorInterface');
+        $generator->expects($this->once())
+            ->method('generate')
+            ->will($this->returnValue('/blog/5'));
+
+        $container = new Container();
+        $container['Packfire\\Router\\GeneratorInterface'] = $generator;
+
+        $config = array(
+            'path' => '/blog/:id',
+            'target' => 'http://heartcode.sg/'
+        );
+
+        $router = $container->instantiate('Packfire\\Router\\Router');
+        $router->add('test', $config);
+
+        $uri = $router->generate('test', array('id' => 5));
+        $this->assertEquals('/blog/5', $uri);
+    }
+
     /**
      * @expectedException Packfire\Router\Exceptions\RouteNotFoundException
      */
