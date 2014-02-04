@@ -64,7 +64,7 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
     public function testGenerateNothing2()
     {
         $route = $this->getMock('Packfire\\Router\\RouteInterface');
-        $route->expects($this->any())
+        $route->expects($this->once())
             ->method('rules')
             ->will($this->returnValue(array('path' => array())));
         $generator = new Generator();
