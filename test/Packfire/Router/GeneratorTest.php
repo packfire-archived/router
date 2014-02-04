@@ -47,6 +47,20 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/test/example/4.json', $uri);
     }
 
+    public function testGenerateNothing()
+    {
+        $route = new BaseRoute(
+            'test',
+            array(
+            )
+        );
+
+        $generator = new Generator();
+
+        $uri = $generator->generate($route, array('id' => 4, 'format' => 'json'));
+        $this->assertNull($uri);
+    }
+
     /**
      * @expectedException Packfire\Router\Exceptions\MissingRequiredParameterException
      */
