@@ -74,11 +74,18 @@ class PathMatcher extends AbstractMatcher
                 case 'alphanumeric':
                     $rule = '^[a-zA-Z0-9]+$';
                     break;
+                case 's':
                 case 'slug':
                     $rule = '^[a-zA-Z0-9-]+$';
                     break;
+                case 'h':
                 case 'hex':
                     $rule = '^[a-fA-F0-9]+$';
+                    break;
+                case 'any':
+                case 'string':
+                case 'text':
+                    $rule = '^.+$';
                     break;
                 default:
                     if (substr($rule, 0, 1) != '^' && substr($rule, -1) != '$') {
