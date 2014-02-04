@@ -26,7 +26,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
             $params = $this->rules['path']->params();
         }
         if (isset($this->config['action'])) {
-            $callback = self::loadCallback($this->config['action']);
+            $callback = self::loadCallback($this->container, $this->config['action']);
             $dispatcher->dispatch($callback, $params);
         }
     }
@@ -40,7 +40,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
         return $result;
     }
 
-    public static function loadCallback($action)
+    public static function loadCallback($container, $action)
     {
         if (is_string($action)) {
             $pos = strpos($action, '::');
@@ -49,7 +49,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
                     substr($action, 0, $pos),
                     substr($action, $pos + 2)
                 );
-                $action[0] = $this->container->instantiate($action[0]);
+                $action[0] = $container->instantiate($action[0]);
             }
         }
         return $action;
