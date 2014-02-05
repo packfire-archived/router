@@ -35,4 +35,23 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue($this));
         $this->assertEquals($this, BaseRoute::loadCallback($container, $this));
     }
+
+    public function testCallback()
+    {
+        $container = new Container();
+
+        $dispatcher = $this->getMock('Packfire\\Router\\DispatcherInterface');
+        $dispatcher->expects($this->once())
+            ->method('dispatch');
+
+        $container['Packfire\\Router\\DispatcherInterface'] = $dispatcher;
+
+        $config = array(
+            'path' => '/blog-:id',
+            'params' => array('id' => 'i'),
+            'action' => 'TestController::testCallback'
+        );
+        $route = $container->instantiate('Packfire\\Router\\Routes\\BaseRoute', 'test', array());
+        $route->callback();
+    }
 }
