@@ -10,7 +10,7 @@ use Packfire\FuelBlade\ConsumerInterface;
 use Packfire\FuelBlade\Container;
 use Packfire\Config\ConfigFactory;
 
-class Loader implements ConsumerInterface
+class Loader implements LoaderInterface, ConsumerInterface
 {
     protected $container;
 
