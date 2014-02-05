@@ -9,9 +9,9 @@ namespace Packfire\Router\Routes;
 use \PHPUnit_Framework_TestCase;
 use Packfire\FuelBlade\Container;
 
-function header($header, $replacement = false)
+function header($header, $replacement = false, $code = null)
 {
-
+    echo json_encode(func_get_args());
 }
 
 class RedirectRouteTest extends PHPUnit_Framework_TestCase
@@ -27,7 +27,11 @@ class RedirectRouteTest extends PHPUnit_Framework_TestCase
         );
         $route = $container->instantiate('Packfire\\Router\\Routes\\RedirectRoute', array('name' => 'test', 'config' => $config));
 
-        $this->setExpectedException('\\RuntimeException');
+        ob_start();
         $route->callback();
+        $content = ob_get_contents();
+        ob_end_clean();
+        $var = json_decode($content, true);
+        $this->assertEquals(array('Location: http://blog.example.com', true, 302), $var);
     }
 }
