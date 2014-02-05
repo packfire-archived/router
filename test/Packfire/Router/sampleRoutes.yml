@@ -1,0 +1,12 @@
+routes:
+  home:
+    path: /
+    method: get
+    action: HomeController::index
+  post:
+    path: /post/:id-:title
+    method: get
+    params:
+      id: i
+      title: slug
+    action: BlogController:view
