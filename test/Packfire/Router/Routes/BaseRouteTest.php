@@ -49,9 +49,9 @@ class PathMatcherTest extends PHPUnit_Framework_TestCase
         $config = array(
             'path' => '/blog-:id',
             'params' => array('id' => 'i'),
-            'action' => 'TestController::testCallback'
+            'action' => $this
         );
-        $route = $container->instantiate('Packfire\\Router\\Routes\\BaseRoute', 'test', array());
+        $route = $container->instantiate('Packfire\\Router\\Routes\\BaseRoute', array('name' => 'test', 'config' => $config));
         $route->callback();
     }
 }
