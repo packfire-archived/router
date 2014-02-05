@@ -17,4 +17,6 @@ interface RouteInterface
     public function rules();
 
     public function callback();
+
+    public function setParams($params);
 }

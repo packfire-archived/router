@@ -21,13 +21,9 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
             $dispatcher = new Dispatcher();
         }
 
-        $params = array();
-        if (isset($this->rules['path'])) {
-            $params = $this->rules['path']->params();
-        }
         if (isset($this->config['action'])) {
             $callback = self::loadCallback($this->container, $this->config['action']);
-            $dispatcher->dispatch($callback, $params);
+            $dispatcher->dispatch($callback, $this->params);
         }
     }
 

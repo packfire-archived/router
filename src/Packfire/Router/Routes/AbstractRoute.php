@@ -16,6 +16,8 @@ abstract class AbstractRoute implements RouteInterface
 
     protected $config;
 
+    protected $params = array();
+
     public function __construct($name, $config)
     {
         $this->name = $name;
@@ -29,6 +31,11 @@ abstract class AbstractRoute implements RouteInterface
                 'params' => isset($config['params']) ? $config['params'] : array()
             );
         }
+    }
+
+    public function setParams($params)
+    {
+        $this->params = $params;
     }
 
     public function name()
