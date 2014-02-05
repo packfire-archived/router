@@ -19,7 +19,11 @@ class RedirectRoute extends AbstractRoute implements ConsumerInterface
         $code = isset($this->config['http']) ? (int)$this->config['http'] : 302;
 
         header('Location: ' . $target, true, $code);
-        exit;
+        if (isset($this->container['PHPUnit_Framework_TestCase'])) {
+            throw new \RuntimeException();
+        } else {
+            exit;
+        }
     }
 
     public static function testConfig($config)

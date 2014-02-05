@@ -9,7 +9,7 @@ namespace Packfire\Router\Routes;
 use \PHPUnit_Framework_TestCase;
 use Packfire\FuelBlade\Container;
 
-class PathMatcherTest extends PHPUnit_Framework_TestCase
+class BaseRouteTest extends PHPUnit_Framework_TestCase
 {
     public function testTestConfig()
     {
