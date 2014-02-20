@@ -14,10 +14,10 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     public function testLoad()
     {
         $loader = new Loader(__DIR__ . '/sampleRoutes.yml');
-        $router = $loader->load();
+        $resultRouter = $loader->load();
 
-        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $router);
-        $this->assertEquals('/', $router->generate('home'));
+        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $resultRouter);
+        $this->assertEquals('/', $resultRouter->generate('home'));
     }
 
     public function testLoad2()
@@ -30,9 +30,9 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         $container['Packfire\\Router\\RouterInterface'] = $router;
 
         $loader = $container->instantiate('Packfire\\Router\\Loader', array('file' => __DIR__ . '/sampleRoutes.yml'));
-        $router = $loader->load();
+        $resultRouter = $loader->load();
 
-        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $router);
+        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $resultRouter);
     }
 
     public function testLoad3()
@@ -44,7 +44,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         $loader = new Loader(__DIR__ . '/sampleRoutes.yml');
         $resultRouter = $loader->load($router);
 
-        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $router);
+        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $resultRouter);
         $this->assertEquals($router, $resultRouter);
     }
 }
