@@ -10,5 +10,5 @@ interface LoaderInterface
 {
     public function __construct($file);
 
-    public function load();
+    public function load(RouterInterface $router = null);
 }

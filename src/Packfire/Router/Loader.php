@@ -24,9 +24,11 @@ class Loader implements LoaderInterface, ConsumerInterface
         $this->container = new Container();
     }
 
-    public function load()
+    public function load(RouterInterface $router = null)
     {
-        if (isset($this->container['Packfire\\Router\\RouterInterface'])) {
+        if ($router) {
+            $this->router = $router;
+        } elseif (isset($this->container['Packfire\\Router\\RouterInterface'])) {
             $this->router = $this->container['Packfire\\Router\\RouterInterface'];
         } else {
             $this->router = $this->container->instantiate('Packfire\\Router\\Router');
