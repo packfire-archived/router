@@ -20,12 +20,12 @@ Use [Composer](https://getcomposer.org/) to install `"packfire/router": "1.0.*"`
 
 Simply load your routes from any configuration format you like:
 
-        $loader = new Loader('config/routes.yml'); // loading from a YAML file
-        $loader = new Loader('config/routes.json'); // loading from a JSON file
-        $loader = new Loader('config/routes.php'); // or loading from a PHP file that returns an array of configuration
+    $loader = new Loader('config/routes.yml'); // loading from a YAML file
+    $loader = new Loader('config/routes.json'); // loading from a JSON file
+    $loader = new Loader('config/routes.php'); // or loading from a PHP file that returns an array of configuration
 
-		// create the router using the configuration
-        $router = $loader->load();
+	// create the router using the configuration
+    $router = $loader->load();
 
 A sample configuration looks like this (in YAML):
 
@@ -41,3 +41,21 @@ A sample configuration looks like this (in YAML):
           id: i
           title: slug
         action: HeartCode\Blog\Controller:view
+
+##Routing Requests
+
+Routing requests is simple:
+
+    $loader = new Loader('config/routes.yml');
+    $router = $loader->load();
+
+ 	// load data from $_SERVER
+	$request = new CurrentRequest();
+
+	// Get the route based on the current request
+	$route = $router->route($request);
+
+With the `$route` object in hand, you can easily execute the `$route` by simply running the callback:
+
+	// performs the action that the route needs to
+	$route->callback();
