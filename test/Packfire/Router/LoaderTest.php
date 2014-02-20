@@ -34,4 +34,17 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $router);
     }
+
+    public function testLoad3()
+    {
+        $router = $this->getMock('Packfire\\Router\\RouterInterface');
+        $router->expects($this->exactly(2))
+            ->method('add');
+
+        $loader = new Loader(__DIR__ . '/sampleRoutes.yml');
+        $resultRouter = $loader->load($router);
+
+        $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $router);
+        $this->assertEquals($router, $resultRouter);
+    }
 }
