@@ -8,4 +8,10 @@ Fast & clean URL router for PHP 5.3+.
 - Fast route dispatch through effective OOP design
 - Scalable and expansive API
 
-Currently WIP. Stay tuned.
+## Installing
+
+Use [Composer](https://getcomposer.org/) to install `"packfire/router": "1.0.*"`.
+
+1. Download `composer.phar`
+2. Add `"packfire/router": "1.0.*"` under the `"require"` configuration in `composer.json`.
+3. Run `php composer.phar install` to install Packfire Router. 
