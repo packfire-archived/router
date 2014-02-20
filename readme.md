@@ -59,3 +59,14 @@ With the `$route` object in hand, you can easily execute the `$route` by simply 
 
 	// performs the action that the route needs to
 	$route->callback();
+
+##Generating URLs from Routes
+
+You can perform reverse engineering by putting the route and parameters to form its full working URL:
+
+    $loader = new Loader('config/routes.yml');
+    $router = $loader->load();
+
+	$url = $router->generate('post', array('id' => 412, 'title' => 'maybe-this-works'));
+
+`$url` will probably equals to `/post/412-maybe-this-works`
