@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0e5c2541c4d229137c793bdbe84c4935",
+    "hash": "d1ca0f4fd0b86703dc6ae1ed2d1c6cfb",
     "packages": [
         {
             "name": "camspiers/json-pretty",
@@ -136,16 +136,16 @@
         },
         {
             "name": "packfire/config",
-            "version": "1.0.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/packfire/config.git",
-                "reference": "53e353fec8c5c0a47fa1f6f02cac5e4a78c285cc"
+                "reference": "438d2ff324ec2aa657257f2f4f567ee4a150ea4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/packfire/config/zipball/53e353fec8c5c0a47fa1f6f02cac5e4a78c285cc",
-                "reference": "53e353fec8c5c0a47fa1f6f02cac5e4a78c285cc",
+                "url": "https://api.github.com/repos/packfire/config/zipball/438d2ff324ec2aa657257f2f4f567ee4a150ea4d",
+                "reference": "438d2ff324ec2aa657257f2f4f567ee4a150ea4d",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
                 }
             ],
             "description": "A config driver that is easy to use",
-            "time": "2013-08-25 15:36:00"
+            "time": "2014-02-20 23:57:09"
         },
         {
             "name": "packfire/fuelblade",
