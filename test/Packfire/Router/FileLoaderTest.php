@@ -9,11 +9,11 @@ namespace Packfire\Router;
 use \PHPUnit_Framework_TestCase;
 use Packfire\FuelBlade\Container;
 
-class LoaderTest extends PHPUnit_Framework_TestCase
+class FileLoaderTest extends PHPUnit_Framework_TestCase
 {
     public function testLoad()
     {
-        $loader = new Loader(__DIR__ . '/sampleRoutes.yml');
+        $loader = new FileLoader(__DIR__ . '/sampleRoutes.yml');
         $resultRouter = $loader->load();
 
         $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $resultRouter);
@@ -29,7 +29,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         $container = new Container();
         $container['Packfire\\Router\\RouterInterface'] = $router;
 
-        $loader = $container->instantiate('Packfire\\Router\\Loader', array('file' => __DIR__ . '/sampleRoutes.yml'));
+        $loader = $container->instantiate('Packfire\\Router\\FileLoader', array('file' => __DIR__ . '/sampleRoutes.yml'));
         $resultRouter = $loader->load();
 
         $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $resultRouter);
@@ -41,7 +41,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         $router->expects($this->exactly(2))
             ->method('add');
 
-        $loader = new Loader(__DIR__ . '/sampleRoutes.yml');
+        $loader = new FileLoader(__DIR__ . '/sampleRoutes.yml');
         $resultRouter = $loader->load($router);
 
         $this->assertInstanceOf('Packfire\\Router\\RouterInterface', $resultRouter);

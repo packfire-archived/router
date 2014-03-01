@@ -10,11 +10,9 @@ use Packfire\FuelBlade\ConsumerInterface;
 use Packfire\FuelBlade\Container;
 use Packfire\Config\ConfigFactory;
 
-class Loader implements LoaderInterface, ConsumerInterface
+class FileLoader implements LoaderInterface, ConsumerInterface
 {
     protected $container;
-
-    protected $router;
 
     protected $file;
 
@@ -26,12 +24,12 @@ class Loader implements LoaderInterface, ConsumerInterface
 
     public function load(RouterInterface $router = null)
     {
-        if ($router) {
-            $this->router = $router;
-        } elseif (isset($this->container['Packfire\\Router\\RouterInterface'])) {
-            $this->router = $this->container['Packfire\\Router\\RouterInterface'];
-        } else {
-            $this->router = $this->container->instantiate('Packfire\\Router\\Router');
+        if (!$router) {
+            if (isset($this->container['Packfire\\Router\\RouterInterface'])) {
+                $router = $this->container['Packfire\\Router\\RouterInterface'];
+            } else {
+                $router = $this->container->instantiate('Packfire\\Router\\Router');
+            }
         }
 
         $factory = new ConfigFactory();
@@ -39,10 +37,10 @@ class Loader implements LoaderInterface, ConsumerInterface
         $routes = $config->get('routes');
         if ($routes) {
             foreach ($routes as $name => $config) {
-                $this->router->add($name, $config);
+                $router->add($name, $config);
             }
         }
-        return $this->router;
+        return $router;
     }
 
     public function __invoke($container)
