@@ -36,8 +36,8 @@ class FileLoader implements LoaderInterface, ConsumerInterface
         $config = $factory->load($this->file);
         $routes = $config->get('routes');
         if ($routes) {
-            foreach ($routes as $name => $config) {
-                $router->add($name, $config);
+            foreach ($routes as $name => $route) {
+                $router->add($name, $route);
             }
         }
         return $router;
