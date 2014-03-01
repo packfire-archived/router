@@ -20,11 +20,13 @@ Use [Composer](https://getcomposer.org/) to install `"packfire/router": "1.0.*"`
 
 Simply load your routes from any configuration format you like:
 
-    $loader = new Loader('config/routes.yml'); // loading from a YAML file
-    $loader = new Loader('config/routes.json'); // loading from a JSON file
-    $loader = new Loader('config/routes.php'); // or loading from a PHP file that returns an array of configuration
+	use Packfire\Router\FileLoader;
 
-	// create the router using the configuration
+    $loader = new FileLoader('config/routes.yml'); // loading from a YAML file
+    $loader = new FileLoader('config/routes.json'); // loading from a JSON file
+    $loader = new FileLoader('config/routes.php'); // or loading from a PHP file that returns an array of configuration
+
+	// create the Router object using the configuration
     $router = $loader->load();
 
 A sample configuration looks like this (in YAML):
@@ -46,7 +48,10 @@ A sample configuration looks like this (in YAML):
 
 Routing requests is simple:
 
-    $loader = new Loader('config/routes.yml');
+	use Packfire\Router\FileLoader;
+	use Packfire\Router\CurrentRequest;
+
+    $loader = new FileLoader('config/routes.yml');
     $router = $loader->load();
 
  	// load data from $_SERVER
@@ -64,7 +69,9 @@ With the `$route` object in hand, you can easily execute the `$route` by simply 
 
 You can perform reverse engineering by putting the route and parameters to form its full working URL:
 
-    $loader = new Loader('config/routes.yml');
+	use Packfire\Router\FileLoader;    
+
+    $loader = new FileLoader('config/routes.yml');
     $router = $loader->load();
 
 	$url = $router->generate('post', array('id' => 412, 'title' => 'maybe-this-works'));
