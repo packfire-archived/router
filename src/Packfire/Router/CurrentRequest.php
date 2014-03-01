@@ -30,7 +30,6 @@ class CurrentRequest implements RequestInterface
 
     protected function determinePath($server)
     {
-        $path = null;
         if (isset($server['ORIG_PATH_INFO'])) {
             $path = $server['ORIG_PATH_INFO'];
         } elseif (isset($server['PATH_INFO'])) {

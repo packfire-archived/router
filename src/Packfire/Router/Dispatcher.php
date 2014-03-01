@@ -31,7 +31,7 @@ class Dispatcher implements DispatcherInterface
                 try {
                     $pass[] = $param->getDefaultValue();
                 } catch (\ReflectionException $ex) {
-
+                    // move on if there is no default value.
                 }
             }
         }

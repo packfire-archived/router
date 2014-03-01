@@ -90,6 +90,6 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
 
         $generator = new Generator();
 
-        $uri = $generator->generate($route, array('format' => 'json'));
+        $generator->generate($route, array('format' => 'json'));
     }
 }

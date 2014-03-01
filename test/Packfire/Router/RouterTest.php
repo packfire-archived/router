@@ -192,6 +192,6 @@ class RouterTest extends PHPUnit_Framework_TestCase
 
         $router = new Router();
         $router->add('one', $config);
-        $uri = $router->generate('two');
+        $router->generate('two');
     }
 }

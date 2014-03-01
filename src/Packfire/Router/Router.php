@@ -31,7 +31,6 @@ class Router implements RouterInterface, ConsumerInterface
 
     public function route(RequestInterface $request)
     {
-        $matchers = array();
         if (isset($this->container['Packfire\\Router\\MatcherInterface'])) {
             $matchers = (array)$this->container['Packfire\\Router\\MatcherInterface'];
         } else {
