@@ -36,7 +36,7 @@ class BaseRouteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this, BaseRoute::loadCallback($container, $this));
     }
 
-    public function testCallback()
+    public function testExecute()
     {
         $container = new Container();
 
@@ -52,10 +52,10 @@ class BaseRouteTest extends PHPUnit_Framework_TestCase
             'action' => $this
         );
         $route = $container->instantiate('Packfire\\Router\\Routes\\BaseRoute', array('name' => 'test', 'config' => $config));
-        $route->callback();
+        $route->execute();
     }
 
-    public function testCallback2()
+    public function testExecute2()
     {
         $container = new Container();
 
@@ -66,7 +66,7 @@ class BaseRouteTest extends PHPUnit_Framework_TestCase
             'action' => array($this, 'controllerAction')
         );
         $route = $container->instantiate('Packfire\\Router\\Routes\\BaseRoute', array('name' => 'test', 'config' => $config));
-        $route->callback();
+        $route->execute();
     }
 
     public function controllerAction($id)

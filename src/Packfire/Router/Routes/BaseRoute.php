@@ -13,7 +13,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
 {
     protected $container;
 
-    public function callback()
+    public function execute()
     {
         if (isset($this->container['Packfire\\Router\\DispatcherInterface'])) {
             $dispatcher = $this->container['Packfire\\Router\\DispatcherInterface'];

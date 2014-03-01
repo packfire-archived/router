@@ -16,7 +16,7 @@ function header($header, $replacement = false, $code = null)
 
 class RedirectRouteTest extends PHPUnit_Framework_TestCase
 {
-    public function testCallback()
+    public function testExecute()
     {
         $container = new Container();
         $container['PHPUnit_Framework_TestCase'] = $this;
@@ -28,7 +28,7 @@ class RedirectRouteTest extends PHPUnit_Framework_TestCase
         $route = $container->instantiate('Packfire\\Router\\Routes\\RedirectRoute', array('name' => 'test', 'config' => $config));
 
         ob_start();
-        $route->callback();
+        $route->execute();
         $content = ob_get_contents();
         ob_end_clean();
         $var = json_decode($content, true);

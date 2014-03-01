@@ -28,7 +28,7 @@ interface RouteInterface
     /**
      * @return void
      */
-    public function callback();
+    public function execute();
 
     /**
      * @return void

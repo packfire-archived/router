@@ -12,7 +12,7 @@ class RedirectRoute extends AbstractRoute implements ConsumerInterface
 {
     protected $container;
 
-    public function callback()
+    public function execute()
     {
         $target = $this->config['target'];
         $code = isset($this->config['http']) ? (int)$this->config['http'] : 302;
