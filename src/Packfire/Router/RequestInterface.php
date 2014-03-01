@@ -8,9 +8,18 @@ namespace Packfire\Router;
 
 interface RequestInterface
 {
+    /**
+     * @return string
+     */
     public function path();
 
+    /**
+     * @return string
+     */
     public function method();
 
+    /**
+     * @return string
+     */
     public function host();
 }
