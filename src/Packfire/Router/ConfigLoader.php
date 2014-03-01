@@ -8,7 +8,6 @@ namespace Packfire\Router;
 
 use Packfire\FuelBlade\ConsumerInterface;
 use Packfire\FuelBlade\Container;
-use Packfire\Config\ConfigFactory;
 use Packfire\Config\ConfigInterface;
 
 class ConfigLoader implements LoaderInterface, ConsumerInterface

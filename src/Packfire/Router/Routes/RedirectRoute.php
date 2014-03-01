@@ -7,7 +7,6 @@
 namespace Packfire\Router\Routes;
 
 use Packfire\FuelBlade\ConsumerInterface;
-use Packfire\Router\Dispatcher;
 
 class RedirectRoute extends AbstractRoute implements ConsumerInterface
 {
