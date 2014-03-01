@@ -38,7 +38,7 @@ class ConfigLoader implements LoaderInterface, ConsumerInterface
         $routes = $this->config->get('routes');
         if ($routes) {
             foreach ($routes as $name => $config) {
-                $this->router->add($name, $config);
+                $router->add($name, $config);
             }
         }
         return $router;
