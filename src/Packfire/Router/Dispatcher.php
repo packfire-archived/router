@@ -8,6 +8,12 @@ namespace Packfire\Router;
 
 class Dispatcher implements DispatcherInterface
 {
+    /**
+     * Executes an action with named parameters
+     * @param mixed $action An action that can be a function, callback or class method.
+     * @param array $params (optional) An array of named parameters to pass into the action.
+     * @return mixed Returns any values returned by the action.
+     */
     public function dispatch($action, $params = array())
     {
         $invokeParams = array();
