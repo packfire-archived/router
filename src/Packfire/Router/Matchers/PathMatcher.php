@@ -7,6 +7,7 @@
 namespace Packfire\Router\Matchers;
 
 use Packfire\Router\RouteInterface;
+use Packfire\Router\Exceptions\InvalidParameterException;
 
 class PathMatcher extends AbstractMatcher
 {
@@ -27,18 +28,27 @@ class PathMatcher extends AbstractMatcher
                 $uriParams = array();
                 $result = (bool)preg_match($regex, $this->request->path(), $uriParams);
 
-                $params = array();
                 if ($result) {
-                    foreach ($paramRules as $name => $rule) {
-                        $result = self::validate($uriParams, $name, $rule);
-                        if ($result) {
-                            $params[$name] = isset($uriParams[$name]) ? $uriParams[$name] : null;
-                        } else {
-                            break;
-                        }
+                    try {
+                        $route->setParams(self::matchParams($paramRules, $uriParams));
+                    } catch (InvalidParameterException $ex) {
+                        $result = false;
                     }
-                    $route->setParams($params);
                 }
+            }
+        }
+        return $result;
+    }
+
+    protected static function matchParams($rules, $params)
+    {
+        $result = array();
+        foreach ($rules as $name => $rule) {
+            $check = self::validate($params, $name, $rule);
+            if ($check) {
+                $result[$name] = isset($params[$name]) ? $params[$name] : null;
+            } else {
+                throw new InvalidParameterException($name);
             }
         }
         return $result;
