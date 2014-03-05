@@ -11,6 +11,12 @@ use Packfire\Router\Exceptions\MissingRequiredParameterException;
 
 class Generator implements GeneratorInterface
 {
+    /**
+     * Generate the URL given a route and its parameters
+     * @param  Packfire\Router\RouteInterface $route The route the generate the URL from
+     * @param  array $params The parameters of the route
+     * @return string Returns the generated URL.
+     */
     public function generate(RouteInterface $route, $params)
     {
         $rules = $route->rules();
