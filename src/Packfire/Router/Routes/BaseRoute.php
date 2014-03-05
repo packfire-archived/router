@@ -13,6 +13,10 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
 {
     protected $container;
 
+    /**
+     * Run the action of the route
+     * @return void
+     */
     public function execute()
     {
         if (isset($this->container['Packfire\\Router\\DispatcherInterface'])) {
@@ -29,6 +33,11 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
         }
     }
 
+    /**
+     * Test to ensure that the configuration can be used by this route
+     * @param array $config The configuration to test for
+     * @return boolean Returns true if the configuration can be used to create a BaseRoute, false otherwise.
+     */
     public static function testConfig($config)
     {
         $result = false;
@@ -38,6 +47,12 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
         return $result;
     }
 
+    /**
+     * Preload the object in defined in the action
+     * @param  Packfire\FuelBlade\ContainerInterface $container The FuelBlade IoC Container
+     * @param  string $action The action string to load
+     * @return array|callback Returns the array of callback
+     */
     public static function loadCallback($container, $action)
     {
         if (is_string($action)) {
@@ -53,8 +68,14 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
         return $action;
     }
 
+    /**
+     * Inject the object with the IoC container
+     * @param  Packfire\FuelBlade\ContainerInterface|array $container The FuelBlade IoC Container
+     * @return Packfire\Router\Routes\BaseRoute Returns self
+     */
     public function __invoke($container)
     {
         $this->container = $container;
+        return $this;
     }
 }
