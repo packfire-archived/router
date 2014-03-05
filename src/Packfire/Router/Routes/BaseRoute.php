@@ -8,6 +8,7 @@ namespace Packfire\Router\Routes;
 
 use Packfire\FuelBlade\ConsumerInterface;
 use Packfire\Router\Dispatcher;
+use Packfire\FuelBlade\ContainerInterface;
 
 class BaseRoute extends AbstractRoute implements ConsumerInterface
 {
@@ -53,7 +54,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
      * @param  string $action The action string to load
      * @return array|callback Returns the array of callback
      */
-    public static function loadCallback($container, $action)
+    public static function loadCallback(ContainerInterface $container, $action)
     {
         if (is_string($action)) {
             $pos = strpos($action, '::');
