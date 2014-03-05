@@ -26,6 +26,10 @@ class CurrentRequest implements RequestInterface
      */
     protected $host;
 
+    /**
+     * Create a new CurrentRequest object
+     * @param array $server (optional) The $_SERVER information to build the request.
+     */
     public function __construct($server = null)
     {
         if (!$server) {
@@ -58,16 +62,28 @@ class CurrentRequest implements RequestInterface
         return $path;
     }
 
+    /**
+     * Get the path of the current request
+     * @return string Returns the string containing the path of the current request.
+     */
     public function path()
     {
         return $this->path;
     }
 
+    /**
+     * Get the method of the current request
+     * @return string Returns the string containing the method of the current request.
+     */
     public function method()
     {
         return $this->method;
     }
 
+    /**
+     * Get the host of the current request
+     * @return string Returns the string containing the host of the current request.
+     */
     public function host()
     {
         return $this->host;
