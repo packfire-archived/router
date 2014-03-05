@@ -12,6 +12,10 @@ use Packfire\FuelBlade\ContainerInterface;
 
 class BaseRoute extends AbstractRoute implements ConsumerInterface
 {
+    /**
+     * The FuelBlade IoC Container
+     * @var Packfire\FuelBlade\ContainerInterface
+     */
     protected $container;
 
     /**
