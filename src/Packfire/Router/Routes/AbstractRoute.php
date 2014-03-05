@@ -18,6 +18,12 @@ abstract class AbstractRoute implements RouteInterface
 
     protected $params = array();
 
+    /**
+     * Create a new AbstractRoute object
+     * @param string $name   The name of the route
+     * @param array $config The configuration
+     * @return void
+     */
     public function __construct($name, $config)
     {
         $this->name = $name;
@@ -33,16 +39,29 @@ abstract class AbstractRoute implements RouteInterface
         }
     }
 
+    /**
+     * Assign an array of parameters to the route
+     * @param array $params The array of parameters to set in the route
+     * @return void
+     */
     public function setParams($params)
     {
         $this->params = $params;
     }
 
+    /**
+     * Get the name of the route
+     * @return string Returns the name of the route.
+     */
     public function name()
     {
         return $this->name;
     }
 
+    /**
+     * Get the rules of the route
+     * @return array Returns an array of rules configuration
+     */
     public function rules()
     {
         return $this->rules;
