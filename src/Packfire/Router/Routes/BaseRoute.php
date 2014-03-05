@@ -55,7 +55,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
     /**
      * Preload the object in defined in the action
      * @param  Packfire\FuelBlade\ContainerInterface $container The FuelBlade IoC Container
-     * @param  string $action The action string to load
+     * @param  string|mixed $action The action string or object to load
      * @return array|callback Returns the array of callback
      */
     public static function loadCallback(ContainerInterface $container, $action)
