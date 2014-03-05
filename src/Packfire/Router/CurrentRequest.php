@@ -8,10 +8,22 @@ namespace Packfire\Router;
 
 class CurrentRequest implements RequestInterface
 {
+    /**
+     * The path of the current request
+     * @var string
+     */
     protected $path;
 
+    /**
+     * The HTTP method of the current request
+     * @var string
+     */
     protected $method;
 
+    /**
+     * The Host requested to
+     * @var string
+     */
     protected $host;
 
     public function __construct($server = null)
