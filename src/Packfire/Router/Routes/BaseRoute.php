@@ -34,7 +34,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
             $callback = self::loadCallback($this->container, $this->config['action']);
             $defaults = isset($this->config['defaults']) ? $this->config['defaults'] : array();
             $params = array_merge($defaults, $this->params);
-            $dispatcher->dispatch($callback, $params);
+            return $dispatcher->dispatch($callback, $params);
         }
     }
 
