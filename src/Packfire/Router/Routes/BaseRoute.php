@@ -20,7 +20,7 @@ class BaseRoute extends AbstractRoute implements ConsumerInterface
 
     /**
      * Run the action of the route
-     * @return void
+     * @return mixed Returns the result of the action
      */
     public function execute()
     {
